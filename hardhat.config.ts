@@ -120,6 +120,22 @@ const userConfig: HardhatUserConfig = {
     fantomTestnet: {
       ...sharedNetworkConfig,
       url: `https://rpc.testnet.fantom.network/`,
+    },
+    moonriver: {
+      ...sharedNetworkConfig,
+      url: `https://rpc.moonriver.moonbeam.network/`,
+    },
+    moonbase: {
+      ...sharedNetworkConfig,
+      url: `https://rpc.testnet.moonbeam.network`,
+    },
+    celo: {
+      ...sharedNetworkConfig,
+      url: `https://forno.celo.org`,
+    },
+    avalanche: {
+      ...sharedNetworkConfig,
+      url: `https://api.avax.network/ext/bc/C/rpc`,
     }
   },
   deterministicDeployment,
