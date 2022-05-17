@@ -21,6 +21,16 @@ contract Executor {
             // solhint-disable-next-line no-inline-assembly
             assembly {
                 success := call(txGas, to, value, add(data, 0x20), mload(data), 0, 0)
+                if eq(success, 0){
+                    let ptr := mload(0x40)
+                    // reassign free space ptr
+                    mstore(0x40, add(ptr, add(returndatasize(), 0x20)))
+                    // data size
+                    mstore(ptr, returndatasize())
+                    // data
+                    returndatacopy(add(ptr, 0x20), 0, returndatasize())
+                    revert(ptr, add(returndatasize(), 0x20))
+                }
             }
         }
     }
